@@ -12,23 +12,44 @@ export const LotteryGenerator: React.FC<LotteryGeneratorProps> = ({
                                                                     setCount,
                                                                   }) => {
   return (
-    <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg shadow-lg p-8 mb-8">
-      <h1 className="text-4xl font-bold text-white mb-2">로또 번호 추천기</h1>
-      <p className="text-purple-100 mb-6">행운의 숫자를 찾아보세요!</p>
+    <div className="bg-gradient-to-r from-purple-500 via-purple-600 to-pink-500 rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 mb-6 sm:mb-8">
+      {/* 헤더 텍스트 반응형 크기 */}
+      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-3">
+        🍀 로또 번호 추천기
+      </h1>
+      <p className="text-purple-100 text-sm sm:text-base lg:text-lg mb-6 sm:mb-8">
+        행운의 숫자를 찾아보세요!
+      </p>
 
-      <div className="flex gap-4">
+      {/* 버튼 레이아웃: 모바일(세로) → 태블릿 이상(가로) */}
+      <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
         <button
           onClick={onGenerate}
-          className="flex-1 bg-white text-purple-600 hover:bg-gray-100 font-bold py-3 px-6 rounded-lg transition shadow-md"
+          className="
+            flex-1 bg-white text-purple-600 hover:bg-purple-50
+            active:scale-95 font-bold
+            py-4 sm:py-3 lg:py-4 px-6 rounded-xl sm:rounded-lg
+            transition-all duration-200 shadow-lg hover:shadow-xl
+            text-base sm:text-lg
+            touch-manipulation
+          "
         >
-          🎰 번호 생성
+          🎰 번호 생성하기
         </button>
+
         {setCount > 0 && (
           <button
             onClick={onClearAll}
-            className="bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-lg transition shadow-md"
+            className="
+              sm:w-auto bg-red-500 hover:bg-red-600
+              active:scale-95 text-white font-bold
+              py-4 sm:py-3 lg:py-4 px-6 rounded-xl sm:rounded-lg
+              transition-all duration-200 shadow-lg hover:shadow-xl
+              text-base sm:text-lg
+              touch-manipulation
+            "
           >
-            모두 삭제
+            🗑️ 모두 삭제
           </button>
         )}
       </div>
