@@ -12,6 +12,15 @@ export default defineConfig({
     }),
   ],
   base: '/LotteryRecommender/',
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://www.dhlottery.co.kr',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '/common.do'),
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
