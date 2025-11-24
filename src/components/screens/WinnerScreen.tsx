@@ -10,7 +10,9 @@ export const WinnerScreen: React.FC = () => {
   const fetchWinningNumbers = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(`/api?method=getLottoNumber&drwNo=${drawNo}`);
+      const response = await fetch(
+        `https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=${drawNo}`
+      );
 
       if (!response.ok) throw new Error('조회 실패');
 

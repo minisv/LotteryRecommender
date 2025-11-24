@@ -5,10 +5,6 @@ import { LotteryNumber } from '../LotteryNumber';
 export const SavedNumbersScreen: React.FC = () => {
   const { lotterySets, addLotterySet, removeLotterySet, copyNumbers } = useLottery();
 
-  const getDaysLeft = (expiresAt: number) => {
-    return Math.ceil((expiresAt - Date.now()) / (24 * 60 * 60 * 1000));
-  };
-
   return (
     <div className="pb-6">
       <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl shadow-xl p-6 sm:p-8 mb-6">
@@ -41,13 +37,12 @@ export const SavedNumbersScreen: React.FC = () => {
               hour: '2-digit',
               minute: '2-digit',
             });
-            const daysLeft = getDaysLeft(set.expiresAt);
 
             return (
               <div key={set.id} className="bg-white rounded-xl shadow-md p-5 sm:p-6">
                 <div className="flex justify-between items-center mb-4">
                   <p className="text-sm text-gray-500">
-                    {dateStr} <span className="text-purple-600 font-semibold">({daysLeft}일 남음)</span>
+                    {dateStr}
                   </p>
                   <button
                     onClick={() => removeLotterySet(set.id)}
