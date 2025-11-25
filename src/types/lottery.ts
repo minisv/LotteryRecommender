@@ -1,11 +1,11 @@
-export interface LotterySet {
+export interface LotteryNumber {
   id: string;
   numbers: number[];
   createdAt: number;
   expiresAt: number;
 }
 
-export interface WinningNumberData {
+export interface WinningData {
   returnValue: string;
   drwNo: number;
   drwNoDate: string;
@@ -21,4 +21,4 @@ export interface WinningNumberData {
   bnusNo: number;
 }
 
-export type TabKey = 'saved' | 'winner' | 'camera';
+export type TabType = 'saved' | 'winner' | 'camera';

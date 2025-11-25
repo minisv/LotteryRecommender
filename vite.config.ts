@@ -17,7 +17,7 @@ export default defineConfig({
       '/api': {
         target: 'https://www.dhlottery.co.kr',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, '/common.do'),
+        rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },
