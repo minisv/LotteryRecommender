@@ -1,33 +1,54 @@
 import React from 'react';
 
-interface LotteryBallProps {
+interface LottoBallProps {
   number: number;
-  isBonus?: boolean;
+  size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 
-export const LotteryBall: React.FC<LotteryBallProps> = ({ number, isBonus = false }) => {
-  const getBallColor = (num: number): string => {
-    if (num <= 10) return 'from-yellow-400 to-yellow-500';
-    if (num <= 20) return 'from-blue-400 to-blue-500';
-    if (num <= 30) return 'from-red-400 to-red-500';
-    if (num <= 40) return 'from-gray-400 to-gray-500';
-    return 'from-green-400 to-green-500';
+const LottoBall: React.FC<LottoBallProps> = ({ number, size = 'md' }) => {
+  const sizeClasses = {
+    sm: 'w-14 h-14',
+    md: 'w-16 h-16',
+    lg: 'w-20 h-20',
+    xl: 'w-24 h-24',
   };
 
+  const textSizeClasses = {
+    sm: 'text-lg',
+    md: 'text-xl',
+    lg: 'text-2xl',
+    xl: 'text-3xl',
+  };
+
+  // v4에서 안정적으로 작동하는 색상 시스템
+  const getBallColors = (num: number) => {
+    if (num >= 1 && num <= 10) return { bg: 'bg-yellow-400', text: 'text-black', border: 'border-yellow-500' };
+    if (num >= 11 && num <= 20) return { bg: 'bg-blue-500', text: 'text-white', border: 'border-blue-600' };
+    if (num >= 21 && num <= 30) return { bg: 'bg-red-500', text: 'text-white', border: 'border-red-600' };
+    if (num >= 31 && num <= 40) return { bg: 'bg-gray-800', text: 'text-white', border: 'border-gray-900' };
+    return { bg: 'bg-emerald-500', text: 'text-white', border: 'border-emerald-600' };
+  };
+
+  const colors = getBallColors(number);
+
   return (
-    <div className="flex flex-col items-center gap-1">
-      {isBonus && (
-        <span className="text-xs text-white font-semibold bg-purple-500 px-2 py-0.5 rounded-full">
-          보너스
-        </span>
-      )}
+    <div className="flex items-center justify-center p-2">
       <div
-        className={`animate-pop-in w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center font-black text-white text-xl sm:text-2xl shadow-xl bg-gradient-to-br ${getBallColor(
-          number
-        )} ring-4 ring-white/30 hover:scale-110 transition-transform`}
+        className={`
+          ${sizeClasses[size]} ${colors.bg}
+          aspect-square rounded-full
+          flex items-center justify-center
+          ${textSizeClasses[size]} font-lotto font-black tracking-widest
+          ${colors.text} drop-shadow-2xl
+          border-4 ${colors.border}
+          ring-4 ring-white/90 shadow-2xl
+          hover:scale-110 hover:shadow-3xl transition-all duration-300 ease-out
+        `}
       >
-        {number}
+        {number.toString().padStart(2, '0')}
       </div>
     </div>
   );
 };
+
+export default LottoBall;

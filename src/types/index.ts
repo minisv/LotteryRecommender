@@ -1,11 +1,16 @@
-export interface LotteryNumber {
+export interface LottoRecommendation {
   id: string;
+  drawNumber: number;
   numbers: number[];
-  createdAt: number;
-  expiresAt: number;
+  createdAt: string;
 }
 
-export interface WinningData {
+export interface WeeklyUsage {
+  weekStart: string;
+  count: number;
+}
+
+export interface LottoResult {
   returnValue: string;
   drwNo: number;
   drwNoDate: string;
@@ -20,5 +25,3 @@ export interface WinningData {
   drwtNo6: number;
   bnusNo: number;
 }
-
-export type TabType = 'saved' | 'winner' | 'camera';
